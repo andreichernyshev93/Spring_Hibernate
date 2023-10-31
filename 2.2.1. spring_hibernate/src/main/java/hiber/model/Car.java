@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class Car implements Serializable {
 
     @Id
-    @OneToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private long id;
 
     @Column(name = "model")
     private String model;
@@ -20,18 +20,9 @@ public class Car implements Serializable {
 
     public Car() {}
 
-    public Car(User user, String model, int series) {
-        this.user = user;
+    public Car(String model, int series) {
         this.model = model;
         this.series = series;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getModel() {
